@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Say No to Single-Use Plastic – Feedback Form</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #e6fff1;
+            color: #2a2a2a;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: #0d8f65;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            animation: fadeDown 1.2s ease-out;
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80') 
+                        no-repeat center/cover;
+            color: white;
+            height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            text-shadow: 0 0 12px black;
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px white; }
+            to { text-shadow: 0 0 25px #00ffbb; }
+        }
+
+        /* Feedback Form Section */
+        section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .feedback-container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px #bbb;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.8s ease-in-out;
+        }
+
+        .feedback-container.show {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        label {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            margin-top: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #0d8f65;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #0b6c4d;
+            box-shadow: 0 0 10px #0d8f65;
+        }
+
+        /* Button with ripple + glow */
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            font-size: 18px;
+            background: #0d8f65;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0b6c4d;
+            box-shadow: 0 0 12px #0d8f65;
+        }
+
+        button::after {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.6;
+            transform: scale(1);
+            transition: transform 0.6s, opacity 0.8s;
+        }
+
+        button:active::after {
+            transform: scale(40);
+            opacity: 0;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 15px;
+            color: #0d8f65;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 30px;
+            background: #083f2e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            background: #0b6c4d;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Say No to Single-Use Plastic</h1>
+        <p>Your feedback helps us create a greener future 🌿</p>
+    </header>
+
+    <div class="hero">
+        <h1>Choose Reusable. Save the Planet.</h1>
+    </div>
+
+    <section>
+        <h2>Feedback Form</h2>
+        <p>Please share your thoughts on reducing single-use plastic.</p>
+
+        <div class="feedback-container">
+            <form id="feedbackForm">
+                <label>Name</label>
+                <input type="text" id="name" required>
+
+                <label>Email</label>
+                <input type="email" id="email" required>
+
+                <label>Your Feedback</label>
+                <textarea id="message" rows="4" required></textarea>
+
+                <button type="submit">Submit Feedback</button>
+
+                <p class="success-message" id="successMsg">Thank You! Your voice matters. 🌎💚</p>
+            </form>
+        </div>
+    </section>
+ <nav>
+<a href="ban.html">Home</a>
+</nav>
+    <footer>
+        © 2025 Say No to Plastic | Built with ❤️ for a cleaner Earth
+    </footer>
+
+    <script>
+        /* Submit feedback */
+        document.getElementById("feedbackForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            document.getElementById("successMsg").style.display = "block";
+
+            // Clear inputs
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("message").value = "";
+        });
+
+        /* Scroll animation */
+        const fb = document.querySelector('.feedback-container');
+        window.addEventListener('scroll', () => {
+            let pos = fb.getBoundingClientRect().top;
+            if (pos < window.innerHeight - 100) {
+                fb.classList.add('show');
+            }
+        });
+    </script>
+
+</body>
+</html>
